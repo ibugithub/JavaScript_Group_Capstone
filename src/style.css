@@ -4,3 +4,29 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+header {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: white;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.logo > img {
+  width: 130px;
+}
+
+.logo {
+  width: 40%;
+}
