@@ -6,30 +6,71 @@
 }
 
 body {
-  margin: unset;
-  background-color: gainsboro;
+  background-color: rgb(245, 242, 242);
+}
+
+.homepage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.display-items {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 10px;
+  padding-bottom: 30px;
+}
+
+.items img {
+  width: 100%;
+  height: 100%;
+}
+
+.logo > img {
+  width: 100px;
+}
+
+.items .likes_love img {
+  width: 20px;
+}
+
+.likes_love {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.comment_reserve {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 50px;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+  margin: auto;
+}
+
+.comment_reserve button {
+  padding: 7px;
 }
 
 header {
   display: flex;
   justify-content: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 20px;
   background-color: white;
   align-items: center;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-top: 20px;
-  background-color: white;
-}
-
-.logo > img {
-  width: 130px;
+  width: 100%;
 }
 
 .logo {
@@ -37,10 +78,44 @@ footer {
 }
 
 .show {
-  width: 23%;
+  width: 27%;
 }
 
 .about,
 .contact {
-  width: 15%;
+  width: 16%;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 20px;
+  background-color: white;
+  width: 100%;
+}
+
+@media screen and (min-width: 375px) {
+  .items {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .items {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .items {
+    width: 33%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .items {
+    width: 25%;
+  }
 }
