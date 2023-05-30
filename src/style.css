@@ -13,6 +13,7 @@
 .display-items {
   display: flex;
   flex-wrap: wrap;
+  padding: 1px;
 }
 
 .items {
@@ -22,10 +23,98 @@
   box-sizing: border-box;
   border: 1px solid black;
   padding: 10px;
-
+  padding-bottom: 30px;
 }
 
 .items img {
   width: 100%;
-  height: auto;
+  height: 100%;
+}
+
+.items .likes_love img {
+  width: 20px;
+}
+
+.likes_love {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.comment_reserve {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 50px;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+  margin: auto;
+}
+
+.comment_reserve button {
+  padding: 7px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: white;
+  align-items: center;
+}
+
+.logo > img {
+  width: 130px;
+}
+
+.logo {
+  width: 40%;
+}
+
+.show {
+  width: 23%;
+}
+
+.about,
+.contact {
+  width: 15%;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  background-color: white;
+}
+
+
+
+
+
+@media screen and (min-width: 375px) {
+  .items {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .items {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .items {
+    width: 33%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .items {
+    width: 25%;
+  }
 }
