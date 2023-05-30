@@ -6,8 +6,8 @@ const mainElement = document.querySelector('.display-items');
 
 const getData = async () => {
   const data = await tvShowApi.gettingData();
-  data.forEach((element) => {
-    try {
+  try {
+    data.forEach((element) => {
       if (element.show.image.original !== null) {
         const container = ` 
         <div class="items">
@@ -25,11 +25,11 @@ const getData = async () => {
         `;
         mainElement.insertAdjacentHTML('beforeend', container);
       }
-    } catch (error) {
-      return 0;
-    }
+    });
     return 1;
-  });
+  } catch (error) {
+    return error;
+  }
 };
 
 getData();
