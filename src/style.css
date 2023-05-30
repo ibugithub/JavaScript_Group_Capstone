@@ -5,6 +5,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  margin: unset;
+  background-color: gainsboro;
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -29,4 +34,13 @@ footer {
 
 .logo {
   width: 40%;
+}
+
+.show {
+  width: 23%;
+}
+
+.about,
+.contact {
+  width: 15%;
 }
