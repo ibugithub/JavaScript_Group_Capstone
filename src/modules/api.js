@@ -12,22 +12,6 @@ class SendAndReciveData {
       return errror;
     }
   }
-
-  sendScore = async (name, userScore) => {
-    const data = { user: name, score: userScore };
-    await fetch(this.url, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data),
-    });
-  };
 }
 
 const tvShowApi = new SendAndReciveData();
