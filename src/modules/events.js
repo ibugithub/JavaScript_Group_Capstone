@@ -69,10 +69,10 @@ class EventsHandler {
 
         // Increment the like count by 1
         const updatedCount = count + 1;
-        const updateURL = `${this.url}apps/${appId}/likes`;
+        // const updateURL = `${this.url}apps/${appId}/likes`;
 
         // Update the like count in the API
-        updateLikeCount(id, updatedCount, updateURL);
+        // updateLikeCount(id, updatedCount, updateURL);
 
         // Update the UI or perform other actions with the updated like count
         console.log(`Updated like count for item ${id}: ${updatedCount}`);

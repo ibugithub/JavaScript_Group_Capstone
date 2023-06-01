@@ -31,7 +31,7 @@ class Likes {
 
       if (!response.ok) {
         throw new Error(
-          `Failed to post data. Server responded with status ${response.status}`
+          `Failed to post data. Server responded with status ${response.status}`,
         );
       }
       console.log('Data posted successfully');
