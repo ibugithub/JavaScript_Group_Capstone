@@ -8,7 +8,6 @@ class EventsHandler {
     const data = await tvShowApi.getShowData();
     const loveData = await tvShowApi.getLoveData();
     this.loadHome(data, loveData);
-    this.handleCommentBtnClick();
     this.handleLikes();
   }
 
