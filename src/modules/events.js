@@ -30,7 +30,7 @@ class EventsHandler {
                       <img src="${image.original}" alt="#" />
                       <h2>${name}</h2>
                       <div class="likes_love">
-                        <span count=${id}>Likes: <span class="innerSpan" >${count}</span> </span>
+                        <span id=${id}>Likes: <span class="innerSpan" >${count}</span> </span>
                         <button class="love"><img id=${id} src="${love}"></button>
                       </div>
                       <div class="comment_reserve">
