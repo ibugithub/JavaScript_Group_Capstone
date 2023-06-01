@@ -22,7 +22,6 @@ class SendAndReciveData {
         const itemLikes = likesData.find((item) => item.item_id === itemId);
         return itemLikes ? itemLikes.likes : 0;
       } catch (error) {
-        console.error('Error fetching item likes:', error);
         return 0;
       }
     };
