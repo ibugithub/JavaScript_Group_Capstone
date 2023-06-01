@@ -140,7 +140,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api.js */ "./src/modules/api.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -148,7 +147,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-
 var Count = /*#__PURE__*/_createClass(function Count() {
   _classCallCheck(this, Count);
   _defineProperty(this, "countLove", function (event, id) {
@@ -237,6 +235,7 @@ var EventsHandler = /*#__PURE__*/_createClass(function EventsHandler() {
           _this.loadHome(data, loveData);
           _this.handleLikes();
         case 8:
+        case 8:
         case "end":
           return _context.stop();
       }
@@ -252,14 +251,16 @@ var EventsHandler = /*#__PURE__*/_createClass(function EventsHandler() {
           image = _element$show.image;
         var _count = 0;
         if (loveData.length > 0) {
+        if (loveData.length > 0) {
           loveData.forEach(function (element) {
             if (element.item_id === id) {
+              console.log('hey find you');
               console.log('hey find you');
               _count = element.likes;
             }
           });
         }
-        var container = "\n                    <div class=\"items\">\n                      <img src=\"".concat(image.original, "\" alt=\"#\" />\n                      <h2>").concat(name, "</h2>\n                      <div class=\"likes_love\">\n                        <span count=").concat(id, ">Likes: <span class=\"innerSpan\" >").concat(_count, "</span> </span>\n                        <button class=\"love\"><img id=").concat(id, " src=\"").concat(_assets_love_png__WEBPACK_IMPORTED_MODULE_3__, "\"></button>\n                      </div>\n                      <div class=\"comment_reserve\">\n                        <button type=\"button\" data-id=\"").concat(id, "\" class=\"cmnt\">Comments</button>\n                        <button type=\"button\" class=\"rsrv\">Reservation</button>\n                      </div>\n                    </div>\n                  ");
+        var container = "\n                    <div class=\"items\">\n                      <img src=\"".concat(image.original, "\" alt=\"#\" />\n                      <h2>").concat(name, "</h2>\n                      <div class=\"likes_love\">\n                        <span id=").concat(id, ">Likes: <span class=\"innerSpan\" >").concat(_count, "</span> </span>\n                        <button class=\"love\"><img id=").concat(id, " src=\"").concat(_assets_love_png__WEBPACK_IMPORTED_MODULE_3__, "\"></button>\n                      </div>\n                      <div class=\"comment_reserve\">\n                        <button type=\"button\" data-id=\"").concat(id, "\" class=\"cmnt\">Comments</button>\n                        <button type=\"button\" class=\"rsrv\">Reservation</button>\n                      </div>\n                    </div>\n                  ");
         mainElement.insertAdjacentHTML('beforeend', container);
       }
     });
@@ -271,6 +272,7 @@ var EventsHandler = /*#__PURE__*/_createClass(function EventsHandler() {
         var id = event.target.getAttribute('id');
         console.log('hello', event.target.getAttribute('id'));
         _counter_js__WEBPACK_IMPORTED_MODULE_1__["default"].countLove(event, id);
+        _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].sendLoveData(id);
         _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].sendLoveData(id);
       });
     });
