@@ -1,7 +1,7 @@
 import tvShowApi from './api.js';
 import '../style.css';
 import love from '../assets/love.png';
-// import updateLikeCount from './update-like.js';
+import updateLikeCount from './update-like.js';
 
 class EventsHandler {
   constructor() {
