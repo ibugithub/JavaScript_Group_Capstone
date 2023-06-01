@@ -4,13 +4,12 @@ async function createApp() {
       'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/',
       {
         method: 'POST',
-      }
+      },
     );
     const data = await response.text();
-    console.log('App created successfully. App ID:', data);
+    return data;
   } catch (error) {
-    console.error('Error creating app:', error);
+    return error;
   }
 }
-
 createApp();
