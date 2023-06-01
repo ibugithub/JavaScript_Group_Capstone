@@ -141,8 +141,8 @@ class EventsHandler {
       element.addEventListener('click', (event) => {
         const id = event.target.getAttribute('id');
         console.log('hello', event.target.getAttribute('id'));
-        tvShowApi.sendLoveData(id);
         count.countLove(event, id);
+        tvShowApi.sendLoveData(id);
       });
     });
   }
