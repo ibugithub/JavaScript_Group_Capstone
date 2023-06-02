@@ -142,7 +142,7 @@ footer {
   gap: 30px;
 }
 
-.title_count { 
+.title_count {
   display: flex;
   gap: 5px;
   padding-bottom: 20px;
@@ -150,8 +150,8 @@ footer {
 }
 
 .title {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .comments {
@@ -191,7 +191,9 @@ justify-content: center;
   gap: 15px;
 }
 
-#name, #comment, #submit {
+#name,
+#comment,
+#submit {
   border: none;
   outline: none;
   padding: 20px;

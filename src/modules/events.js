@@ -15,6 +15,7 @@ class EventsHandler {
 
   loadHome = (data, loveData) => {
     const mainElement = document.querySelector('.display-items');
+    const totals = document.querySelector('.total');
     data.forEach((element) => {
       if (element.show.image.original !== null) {
         const { id, name, image } = element.show;
@@ -41,9 +42,11 @@ class EventsHandler {
                     </div>
                   `;
         mainElement.insertAdjacentHTML('beforeend', container);
+        const total = loveCounter.countItems();
+        totals.textContent = `${total}`;
       }
     });
-  }
+  };
 
   handleLikes = () => {
     const love = document.querySelectorAll('.love');
