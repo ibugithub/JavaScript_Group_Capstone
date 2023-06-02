@@ -1,7 +1,7 @@
-import tvShowApi from './modules/api.js';
-import commentCounter from './modules/commentCounter.js';
+import tvShowApi from '../modules/api.js';
+import commentCounter from '../modules/commentCounter.js';
 
-jest.mock('./modules/api.js', () => ({
+jest.mock('../modules/api.js', () => ({
   getCommentData: jest.fn(),
 }));
 
