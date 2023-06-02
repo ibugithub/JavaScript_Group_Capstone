@@ -1,7 +1,7 @@
 <div align="center">
   <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
-  <img src="https://avatars.githubusercontent.com/u/108092696?v=4(https://github.com/account)" alt="logo" width="140"  height="auto" />
-  <h3>Capstone</h3>
+  <img src="./src/assets/R.png" alt="logo" width="140"  height="auto" />
+  <h3>Anyverse</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -31,7 +31,7 @@
 
 # 📖 Capstone <a name="about-project"></a>
 
-**Capstone**
+**Anyverse**
 
 > A Capstone project on GitHub using an API involves creating a platform to track and display data of items in a specific activity. The project typically utilizes an API (Application Programming Interface) to retrieve data. In this particular repo, We are building this Capstone with using API, HTML, CSS, JavaScript (ES6), and Webpack.
 
@@ -71,9 +71,20 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-[Demo Link 🔥](https://ibugithub.github.io/javascript_group_capstone/dist/)
+[Demo Link 🔥](https://ibugithub.github.io/JavaScript_Group_Capstone/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+- **You can check out our video representation here below**
+
+## 🚀 video representation <a name="live-demo"></a>
+
+[Demo Link 🔥](https://ibugithub.github.io/JavaScript_Group_Capstone/dist/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- GETTING STARTED -->
 
@@ -158,8 +169,12 @@ You can deploy this project using: webpack in your local machine.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Interactive Functions]**
-- [ ] **[User Profiles]**
+- [ ] **[Daily tv show schedules]**
+- [ ] **[Details about tv shows]**
+- [ ] **[See Likes]**
+- [ ] **[Add Likes]**
+- [ ] **[See comments]**
+- [ ] **[Add comments]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
