@@ -1,5 +1,5 @@
 import tvShowApi from './api.js';
-import count from './counter.js';
+import counter from './counter.js';
 import '../style.css';
 import love from '../assets/love.png';
 
@@ -9,10 +9,11 @@ class EventsHandler {
     const loveData = await tvShowApi.getLoveData();
     this.loadHome(data, loveData);
     this.handleLikes();
-  }
+  };
 
   loadHome = (data, loveData) => {
     const mainElement = document.querySelector('.display-items');
+    const totals = document.querySelector('.total');
     data.forEach((element) => {
       if (element.show.image.original !== null) {
         const { id, name, image } = element.show;
@@ -40,9 +41,11 @@ class EventsHandler {
                     </div>
                   `;
         mainElement.insertAdjacentHTML('beforeend', container);
+        const total = counter.countItems();
+        totals.textContent = `${total}`;
       }
     });
-  }
+  };
 
   handleLikes = () => {
     const love = document.querySelectorAll('.love');
@@ -50,11 +53,11 @@ class EventsHandler {
       element.addEventListener('click', (event) => {
         const id = event.target.getAttribute('id');
         console.log('hello', event.target.getAttribute('id'));
-        count.countLove(event, id);
+        counter.countLove(event, id);
         tvShowApi.sendLoveData(id);
       });
     });
-  }
+  };
 }
 
 const eventhandler = new EventsHandler();
