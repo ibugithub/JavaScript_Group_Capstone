@@ -35,6 +35,27 @@ class SendAndReciveData {
       body: JSON.stringify({ item_id: id }),
     });
   };
+
+  getCommentData = async (id) => {
+    try {
+      const response = await fetch(`${this.involbeurl}apps/${this.appId}/comments?item_id=${id}`);
+      const likesData = await response.json();
+      return likesData;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  sendCommentData = (id) => {
+    id = parseInt(id, 10);
+    fetch(`${this.involbeurl}apps/${this.appId}/likes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ item_id: id }),
+    });
+  };
 }
 
 const tvShowApi = new SendAndReciveData();

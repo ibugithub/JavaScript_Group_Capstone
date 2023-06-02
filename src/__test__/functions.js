@@ -3,7 +3,6 @@ export const countLove = (event) => {
     event.target.closest('.likes_love').querySelector('.innerSpan').textContent,
     10,
   );
-  console.log('The current count is', currentCount);
   const countContainer = event.target
     .closest('.likes_love')
     .querySelector('.innerSpan');
