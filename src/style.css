@@ -203,12 +203,27 @@ justify-content: center;
   border: 1px solid goldenrod;
 }
 
+#dNone {
+  display: none;
+}
+
+.blur {
+  filter: blur(6px);
+}
+
+.popupContainer {
+  position: fixed;
+  overflow-y: scroll;
+  top: 20px;
+  bottom: 20px;
+  background-color:rgb(245, 242, 242)
+}
+
 @media screen and (max-width: 375px) {
   .items {
     width: 100%;
   }
 }
-
 
 @media screen and (min-width: 376px) {
   .items {

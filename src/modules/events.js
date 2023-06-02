@@ -10,6 +10,7 @@ class EventsHandler {
     const loveData = await tvShowApi.getLoveData();
     this.loadHome(data, loveData);
     this.handleLikes();
+    this.handleCommentBtnClick();
   }
 
   loadHome = (data, loveData) => {
@@ -21,7 +22,6 @@ class EventsHandler {
         if (loveData.length > 0) {
           loveData.forEach((element) => {
             if (element.item_id === id) {
-              console.log('hey find you');
               count = element.likes;
             }
           });
@@ -35,7 +35,7 @@ class EventsHandler {
                         <button class="love"><img id=${id} src="${love}"></button>
                       </div>
                       <div class="comment_reserve">
-                        <button type="button" data-id="${id}" class="cmnt">Comments</button>
+                        <button type="button" data-id="${id}" showType=${element.show.type} lang = ${element.show.language}  runtime = ${element.show.runtime} premiered = ${element.show.premiered} class="cmnt">Comments</button>
                         <button type="button" class="rsrv">Reservation</button>
                       </div>
                     </div>
@@ -50,40 +50,35 @@ class EventsHandler {
     love.forEach((element) => {
       element.addEventListener('click', (event) => {
         const id = event.target.getAttribute('id');
-        console.log('hello', event.target.getAttribute('id'));
         count.countLove(event, id);
         tvShowApi.sendLoveData(id);
       });
     });
   }
 
-    // This function will handle the click event of comment button
-    handleCommentBtnClick = () => {
-      const commentBtn = document.querySelectorAll('.cmnt');
-      commentBtn.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
-          this.resetMain();
-          this.showPopup(event);
-        });
+  // This function will handle the click event of comment button
+  handleCommentBtnClick = () => {
+    const commentBtn = document.querySelectorAll('.cmnt');
+    commentBtn.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        this.showPopup(event);
       });
-    };
+    });
+  };
 
-    // To handle the clik in cancel button
-    handleCancleClick = () => {
-      const cancelImg = document.querySelector('#cancelImg');
-      cancelImg.addEventListener('click', () => {
-        this.resetMain();
-        this.onPageLoad();
-      });
-    }
+  // To handle the clik in cancel button
+  handleCancleClick = () => {
+    const cancelImg = document.querySelector('#cancelImg');
+    const mainElement = document.querySelector('.homepage');
+    const popUp = document.querySelector('.popupContainer');
+    const itemContainer = document.querySelector('.display-items');
+    cancelImg.addEventListener('click', () => {
+      mainElement.removeChild(popUp);
+      itemContainer.classList.remove('blur');
+    });
+  }
 
-    // This function will reset the mainElement
-    resetMain = () => {
-      const mainElement = document.querySelector('.display-items');
-      mainElement.innerHTML = '';
-    }
-
-    // This function will create a new container for comment popUp and asign it into the mainElement
+  // This function will create a new container for comment popUp and asign it into the mainElement
   showPopup = (event) => {
     const item = event.target.closest('.items');
     const showImageSrc = item.querySelector('img').getAttribute('src');
@@ -141,8 +136,10 @@ class EventsHandler {
             </div>
         </section>
         `;
-    const mainElement = document.querySelector('.display-items');
-    mainElement.innerHTML = commentPopup;
+    const mainElement = document.querySelector('.homepage');
+    const itemContainer = document.querySelector('.display-items');
+    mainElement.insertAdjacentHTML('beforeend', commentPopup);
+    itemContainer.classList.add('blur');
     this.handleCancleClick();
   }
 }
