@@ -106,6 +106,10 @@ footer {
   width: 100%;
 }
 
+.love {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 375px) {
   .items {
     width: 100%;
