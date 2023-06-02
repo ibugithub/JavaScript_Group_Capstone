@@ -34,10 +34,15 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.title {
+.head-title {
   font-size: 18px;
   margin: 4px auto auto 2px;
-  color: white;
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+}
+
+.title {
   display: flex;
   justify-content: center;
 }
@@ -47,7 +52,7 @@ body {
   height: 20rem;
 }
 
-.logo>img {
+.logo > img {
   width: 100px;
 }
 
