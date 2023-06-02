@@ -111,7 +111,7 @@ footer {
 }
 
 .imgComment {
-  max-width: 600px;
+  width: 89%;
 }
 
 #showImg {
@@ -119,20 +119,20 @@ footer {
 }
 
 .cancelSection{
-  width: 230px;
+  width: 10%;
+  padding-right: 10px;
+  padding-top: 10px;
 }
 
 #cancelImg {
-  width: 100%;
+    width: 30px;
+    position: fixed;
+    right: 4px;
 }
 
 .imgContainer {
   display: flex;
-  padding-left: 10%;
-  padding-right: 10%;
-  justify-content: space-around;
-  align-items: flex-start;
-  gap: 40px;
+  justify-content: center;
 }
 
 .popupSection {
@@ -216,7 +216,14 @@ justify-content: center;
   overflow-y: scroll;
   top: 20px;
   bottom: 20px;
-  background-color:rgb(245, 242, 242)
+  left: 10%;
+  right: 10%;
+  padding-bottom: 40px;
+  background-color: rgb(245, 242, 242);
+}
+
+.popupContainer::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 375px) {
@@ -235,6 +242,12 @@ justify-content: center;
   .items {
     width: 25%;
   }
+
+  #cancelImg {
+    width: 50px;
+    position: fixed;
+    right: 10px;
+}
 }
 
 @media screen and (min-width: 1024px) {
@@ -248,3 +261,19 @@ justify-content: center;
     width: calc(100% / 6);
   }
 }
+
+@media screen and (min-width: 540px) {
+#cancelImg {
+  width: 40px;
+  position: fixed;
+  right: 10px;
+}
+}
+
+@media screen and (min-width: 800px) {
+  #cancelImg {
+    width: 60px;
+    position: fixed;
+    right: 10px;
+  }
+  }

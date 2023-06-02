@@ -1,4 +1,4 @@
-class Count {
+class LoveCounter {
     countLove = (event) => {
       const currentCount = parseInt(event.target.closest('.likes_love').querySelector('.innerSpan').textContent, 10);
       const countContainer = event.target.closest('.likes_love').querySelector('.innerSpan');
@@ -7,5 +7,5 @@ class Count {
     }
 }
 
-const count = new Count();
-export default count;
+const loveCounter = new LoveCounter();
+export default loveCounter;

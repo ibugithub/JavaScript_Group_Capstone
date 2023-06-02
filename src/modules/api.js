@@ -42,19 +42,22 @@ class SendAndReciveData {
       const likesData = await response.json();
       return likesData;
     } catch (error) {
-      console.log('the error is', error.message);
       return error;
     }
   };
 
-  sendCommentData = (id) => {
+  sendCommentData = (id, userName, userComment) => {
     id = parseInt(id, 10);
-    fetch(`${this.involbeurl}apps/${this.appId}/likes`, {
+    return fetch(`${this.involbeurl}apps/${this.appId}/comments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ item_id: id }),
+      body: JSON.stringify({
+        item_id: id,
+        username: userName,
+        comment: userComment,
+      }),
     });
   };
 }
