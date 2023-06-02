@@ -1,8 +1,9 @@
 import tvShowApi from './api.js';
-import counter from './counter.js';
+import loveCounter from './loveCounter.js';
 import '../style.css';
 import cancel from '../assets/cancel.png';
 import love from '../assets/love.png';
+import commentCounter from './commentCounter.js';
 
 class EventsHandler {
   onPageLoad = async () => {
@@ -42,7 +43,7 @@ class EventsHandler {
                     </div>
                   `;
         mainElement.insertAdjacentHTML('beforeend', container);
-        const total = counter.countItems();
+        const total = loveCounter.countItems();
         totals.textContent = `${total}`;
       }
     });
@@ -53,7 +54,7 @@ class EventsHandler {
     love.forEach((element) => {
       element.addEventListener('click', (event) => {
         const id = event.target.getAttribute('id');
-        counter.countLove(event, id);
+        loveCounter.countLove(event, id);
         tvShowApi.sendLoveData(id);
       });
     });
@@ -85,9 +86,6 @@ class EventsHandler {
                 <div class="imgContainer">
                     <div class="imgComment">
                     <img id="showImg" src="${showImageSrc}" alt="">
-                    </div>
-                    
-                    <div class="cancelSection">
                     <img id="cancelImg" src="${cancel}" alt="">
                     </div>
                 </div>
@@ -107,7 +105,7 @@ class EventsHandler {
                 <div class="commentSection">
                     <div class="title_count">
                         <div class="title">Comments</div>
-                        <div class="count">()</div>
+                        <div class="count">(<span class="cmntCount"></span>)</div>
                     </div>
                     <ul class="comments">
                     </ul>
@@ -131,7 +129,7 @@ class EventsHandler {
     itemContainer.classList.add('blur');
     this.handleCancleClick();
     this.afterCommentPopup(id);
-    this.handleSubmitClick();
+    this.handleSubmitClick(id);
   }
 
   // To handle the clik in cancel button
@@ -149,10 +147,12 @@ class EventsHandler {
   afterCommentPopup = async (id) => {
     const commentsData = await tvShowApi.getCommentData(id);
     const commentContainer = document.querySelector('.comments');
+    const comntCountSec = document.querySelector('.cmntCount');
     if (commentsData.length === undefined) {
       const li = document.createElement('li');
       li.textContent = "There's no comment yet";
       commentContainer.appendChild(li);
+      comntCountSec.textContent = 0;
     } else {
       commentsData.forEach((element) => {
         const li = `
@@ -162,13 +162,38 @@ class EventsHandler {
           `;
         commentContainer.insertAdjacentHTML('beforeend', li);
       });
+      const cmntCount = commentCounter.countComment(id);
+      cmntCount.then((result) => {
+        comntCountSec.textContent = result;
+      });
     }
   }
 
-  handleSubmitClick = () => {
+  handleSubmitClick = (id) => {
     const button = document.querySelector('#submit');
     button.addEventListener('click', ((event) => {
       event.preventDefault();
+      const userName = document.querySelector('#name').value;
+      const userComment = document.querySelector('#comment').value;
+      const date = new Date();
+      const commentDate = date.toISOString().slice(0, 10);
+      const commentContainer = document.querySelector('.comments');
+      if (userName.replace(/\s/g, '') !== '' && userComment.replace(/\s/g, '') !== '') {
+        const response = tvShowApi.sendCommentData(id, userName, userComment);
+        response.then((result) => {
+          if (result.status === 201) {
+            const comntCountSec = document.querySelector('.cmntCount');
+            const li = `
+              <li>
+              <span>${commentDate}</span> <span>${userName}</span> <span>${userComment}</span>
+              </li>
+              `;
+            commentContainer.insertAdjacentHTML('beforeend', li);
+            const prevcounter = parseInt(comntCountSec.textContent, 10);
+            comntCountSec.textContent = prevcounter + 1;
+          }
+        });
+      }
     }));
   }
 }
