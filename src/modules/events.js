@@ -1,66 +1,89 @@
 import tvShowApi from './api.js';
+import count from './counter.js';
+import '../style.css';
 import cancel from '../assets/cancel.png';
 import love from '../assets/love.png';
-import '../style.css';
 
 class EventsHandler {
-  // This function will load the default page
   onPageLoad = async () => {
-    const data = await tvShowApi.gettingData();
-    this.loadHome(data);
-    this.handleCommentBtnClick();
+    const data = await tvShowApi.getShowData();
+    const loveData = await tvShowApi.getLoveData();
+    this.loadHome(data, loveData);
+    this.handleLikes();
   }
 
-  // This function will handle the click event of comment button
-  handleCommentBtnClick = () => {
-    const commentBtn = document.querySelectorAll('.cmnt');
-    commentBtn.forEach((btn) => {
-      btn.addEventListener('click', (event) => {
-        this.resetMain();
-        this.showPopup(event);
-      });
-    });
-  };
-
-  // To handle the clik in cancel button
-  handleCancleClick = () => {
-    const cancelImg = document.querySelector('#cancelImg');
-    cancelImg.addEventListener('click', () => {
-      this.resetMain();
-      this.onPageLoad();
-    });
-  }
-
-  // This function will reset the mainElement
-  resetMain = () => {
-    const mainElement = document.querySelector('.display-items');
-    mainElement.innerHTML = '';
-  }
-
-  loadHome = (data) => {
+  loadHome = (data, loveData) => {
     const mainElement = document.querySelector('.display-items');
     data.forEach((element) => {
       if (element.show.image.original !== null) {
-        const container = ` 
-            <div class="items">
-                <img src="${element.show.image.original}" alt="#" />
-                <h2>${element.show.name}</h2>
-                <div class="likes_love">
-                    <span>Likes</span>
-                    <img src="${love}">
-                </div>
-                <div class="comment_reserve"> 
-                    <button type="button" showType=${element.show.type} lang = ${element.show.language}  runtime = ${element.show.runtime} premiered = ${element.show.premiered} class="cmnt">Comments</button>
-                    <button type="button" class="rsrv">Reservation</button>
-                </div>
-            </div>
-            `;
+        const { id, name, image } = element.show;
+        let count = 0;
+        if (loveData.length > 0) {
+          loveData.forEach((element) => {
+            if (element.item_id === id) {
+              console.log('hey find you');
+              count = element.likes;
+            }
+          });
+        }
+        const container = `
+                    <div class="items">
+                      <img src="${image.original}" alt="#" />
+                      <h2>${name}</h2>
+                      <div class="likes_love">
+                        <span id=${id}>Likes: <span class="innerSpan" >${count}</span> </span>
+                        <button class="love"><img id=${id} src="${love}"></button>
+                      </div>
+                      <div class="comment_reserve">
+                        <button type="button" data-id="${id}" class="cmnt">Comments</button>
+                        <button type="button" class="rsrv">Reservation</button>
+                      </div>
+                    </div>
+                  `;
         mainElement.insertAdjacentHTML('beforeend', container);
       }
     });
   }
 
-  // This function will create a new container for comment popUp and asign it into the mainElement
+  handleLikes = () => {
+    const love = document.querySelectorAll('.love');
+    love.forEach((element) => {
+      element.addEventListener('click', (event) => {
+        const id = event.target.getAttribute('id');
+        console.log('hello', event.target.getAttribute('id'));
+        count.countLove(event, id);
+        tvShowApi.sendLoveData(id);
+      });
+    });
+  }
+
+    // This function will handle the click event of comment button
+    handleCommentBtnClick = () => {
+      const commentBtn = document.querySelectorAll('.cmnt');
+      commentBtn.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          this.resetMain();
+          this.showPopup(event);
+        });
+      });
+    };
+
+    // To handle the clik in cancel button
+    handleCancleClick = () => {
+      const cancelImg = document.querySelector('#cancelImg');
+      cancelImg.addEventListener('click', () => {
+        this.resetMain();
+        this.onPageLoad();
+      });
+    }
+
+    // This function will reset the mainElement
+    resetMain = () => {
+      const mainElement = document.querySelector('.display-items');
+      mainElement.innerHTML = '';
+    }
+
+    // This function will create a new container for comment popUp and asign it into the mainElement
   showPopup = (event) => {
     const item = event.target.closest('.items');
     const showImageSrc = item.querySelector('img').getAttribute('src');

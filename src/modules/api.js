@@ -1,9 +1,11 @@
 class SendAndReciveData {
   constructor() {
     this.url = 'https://api.tvmaze.com/schedule';
+    this.involbeurl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+    this.appId = 'UFl3TzBZ7UUa77NKxu0f';
   }
 
-  gettingData = async () => {
+  getShowData = async () => {
     try {
       const response = await fetch(this.url);
       const jsonData = await response.json();
@@ -11,7 +13,28 @@ class SendAndReciveData {
     } catch (errror) {
       return errror;
     }
-  }
+  };
+
+  getLoveData = async () => {
+    try {
+      const response = await fetch(`${this.involbeurl}apps/${this.appId}/likes`); // Use the correct URL format
+      const likesData = await response.json();
+      return likesData;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  sendLoveData = (id) => {
+    id = parseInt(id, 10);
+    fetch(`${this.involbeurl}apps/${this.appId}/likes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ item_id: id }),
+    });
+  };
 }
 
 const tvShowApi = new SendAndReciveData();

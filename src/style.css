@@ -106,6 +106,10 @@ footer {
   width: 100%;
 }
 
+.love {
+  cursor: pointer;
+}
+
 .imgComment {
   max-width: 600px;
 }

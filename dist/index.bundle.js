@@ -12,6 +12,28 @@ __webpack_require__.r(__webpack_exports__);
 
 _modules_events_js__WEBPACK_IMPORTED_MODULE_0__["default"].onPageLoad();
 
+// const onPageLoad = () => {
+//   async function postData(url = '') {
+//     const response = await fetch(url);
+//     return response.json();
+//   }
+//   postData('https://api.tvmaze.com/schedule').then((data) => console.log('the show data is', data));
+
+//   async function postData2(url2 = '') {
+//     const response = await fetch(url2);
+//     return response.json();
+//   }
+//   postData2('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/jDmx1fPvHr5KpfZ0L9Bv/likes').then((data) => console.log('the love data is', data));
+
+//   // const data = tvShowApi.gettingData();
+//   // const loveData = tvShowApi.fetchItemLikes();
+//   // this.loadHome(data, loveData);
+//   // this.handleCommentBtnClick();
+//   // this.handleLikes();
+// };
+
+// onPageLoad();
+
 /***/ }),
 
 /***/ "./src/modules/api.js":
@@ -37,7 +59,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 var SendAndReciveData = /*#__PURE__*/_createClass(function SendAndReciveData() {
   var _this = this;
   _classCallCheck(this, SendAndReciveData);
-  _defineProperty(this, "gettingData", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  _defineProperty(this, "getShowData", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     var response, jsonData;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -62,10 +84,107 @@ var SendAndReciveData = /*#__PURE__*/_createClass(function SendAndReciveData() {
       }
     }, _callee, null, [[0, 10]]);
   })));
+  _defineProperty(this, "getLoveData", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    var response, likesData;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return fetch("".concat(_this.involbeurl, "apps/").concat(_this.appId, "/likes"));
+        case 3:
+          response = _context2.sent;
+          _context2.next = 6;
+          return response.json();
+        case 6:
+          likesData = _context2.sent;
+          return _context2.abrupt("return", likesData);
+        case 10:
+          _context2.prev = 10;
+          _context2.t0 = _context2["catch"](0);
+          return _context2.abrupt("return", _context2.t0);
+        case 13:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2, null, [[0, 10]]);
+  })));
+  _defineProperty(this, "sendLoveData", function (id) {
+    id = parseInt(id, 10);
+    fetch("".concat(_this.involbeurl, "apps/").concat(_this.appId, "/likes"), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        item_id: id
+      })
+    });
+  });
   this.url = 'https://api.tvmaze.com/schedule';
+  this.involbeurl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+  this.appId = 'UFl3TzBZ7UUa77NKxu0f';
 });
 var tvShowApi = new SendAndReciveData();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tvShowApi);
+
+/***/ }),
+
+/***/ "./src/modules/counter.js":
+/*!********************************!*\
+  !*** ./src/modules/counter.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var Count = /*#__PURE__*/_createClass(function Count() {
+  _classCallCheck(this, Count);
+  _defineProperty(this, "countLove", function (event, id) {
+    console.log('start form here');
+    console.log(event.target.closest('.likes_love').querySelector('span').getAttribute('count'));
+    //   console.log(event.target.closest('.likes_love').querySelector('.innerSpan'));
+    var countContainer = event.target.closest('.likes_love').querySelector('.innerSpan');
+    var currentCount = event.target.closest('.likes_love').querySelector('span').getAttribute('count');
+    var newCounter = parseInt(currentCount, 10) + 1;
+    countContainer.innerHTML = newCounter;
+    // id = parseInt(id, 10);
+    // const loveData = tvShowApi.getLoveData();
+    // console.log('inside the counter');
+    // loveData.then((data) => {
+    //   let foundId;
+    //   data.forEach((element) => {
+    //   //   console.log('the id is', id);
+    //     console.log('element id:', element.item_id, 'id:', id);
+    //     //   console.log('the likes is', element.likes);
+    //     console.log('--------------');
+    //     if (id === element.item_id) {
+    //       // console.log('the id is', id);
+    //       // console.log('the element id is', element.item_id);
+    //       // console.log('the likes is', element.likes);
+    //       console.log('find it');
+    //       countContainer.textContent = element.likes + 1;
+    //       foundId = true;
+    //     }
+    //   });
+    //   if (!foundId) {
+    //     console.log('this id is not present');
+    //   }
+    // });
+  });
+});
+
+var count = new Count();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (count);
 
 /***/ }),
 
@@ -80,8 +199,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api.js */ "./src/modules/api.js");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style.css */ "./src/style.css");
-/* harmony import */ var _assets_love_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/love.png */ "./src/assets/love.png");
+/* harmony import */ var _counter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter.js */ "./src/modules/counter.js");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style.css */ "./src/style.css");
+/* harmony import */ var _assets_love_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/love.png */ "./src/assets/love.png");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -95,39 +215,68 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 
+
 var EventsHandler = /*#__PURE__*/_createClass(function EventsHandler() {
   var _this = this;
   _classCallCheck(this, EventsHandler);
-  // This function will load the default page
   _defineProperty(this, "onPageLoad", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-    var mainElement, data;
+    var data, loveData;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          mainElement = document.querySelector('.display-items');
-          _context.next = 3;
-          return _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].gettingData();
-        case 3:
+          _context.next = 2;
+          return _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].getShowData();
+        case 2:
           data = _context.sent;
-          _context.prev = 4;
-          data.forEach(function (element) {
-            if (element.show.image.original !== null) {
-              var container = " \n              <div class=\"items\">\n                  <img src=\"".concat(element.show.image.original, "\" alt=\"#\" />\n                  <h2>").concat(element.show.name, "</h2>\n                  <div class=\"likes_love\">\n                      <span>Likes</span>\n                      <img src=\"").concat(_assets_love_png__WEBPACK_IMPORTED_MODULE_2__, "\">\n                  </div>\n                  <div class=\"comment_reserve\"> \n                      <button type=\"button\" data-id=").concat(element.show.id, " class=\"cmnt\">Comments</button>\n                      <button type=\"button\" class=\"rsrv\">Reservation</button>\n                  </div>\n              </div>\n              ");
-              mainElement.insertAdjacentHTML('beforeend', container);
-            }
-          });
-          _this.handleCommentBtnClick();
-          return _context.abrupt("return", 1);
-        case 10:
-          _context.prev = 10;
-          _context.t0 = _context["catch"](4);
-          return _context.abrupt("return", _context.t0);
-        case 13:
+          _context.next = 5;
+          return _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].getLoveData();
+        case 5:
+          loveData = _context.sent;
+          _this.loadHome(data, loveData);
+          _this.handleLikes();
+        case 8:
+        case 8:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[4, 10]]);
+    }, _callee);
   })));
+  _defineProperty(this, "loadHome", function (data, loveData) {
+    var mainElement = document.querySelector('.display-items');
+    data.forEach(function (element) {
+      if (element.show.image.original !== null) {
+        var _element$show = element.show,
+          id = _element$show.id,
+          name = _element$show.name,
+          image = _element$show.image;
+        var _count = 0;
+        if (loveData.length > 0) {
+        if (loveData.length > 0) {
+          loveData.forEach(function (element) {
+            if (element.item_id === id) {
+              console.log('hey find you');
+              console.log('hey find you');
+              _count = element.likes;
+            }
+          });
+        }
+        var container = "\n                    <div class=\"items\">\n                      <img src=\"".concat(image.original, "\" alt=\"#\" />\n                      <h2>").concat(name, "</h2>\n                      <div class=\"likes_love\">\n                        <span id=").concat(id, ">Likes: <span class=\"innerSpan\" >").concat(_count, "</span> </span>\n                        <button class=\"love\"><img id=").concat(id, " src=\"").concat(_assets_love_png__WEBPACK_IMPORTED_MODULE_3__, "\"></button>\n                      </div>\n                      <div class=\"comment_reserve\">\n                        <button type=\"button\" data-id=\"").concat(id, "\" class=\"cmnt\">Comments</button>\n                        <button type=\"button\" class=\"rsrv\">Reservation</button>\n                      </div>\n                    </div>\n                  ");
+        mainElement.insertAdjacentHTML('beforeend', container);
+      }
+    });
+  });
+  _defineProperty(this, "handleLikes", function () {
+    var love = document.querySelectorAll('.love');
+    love.forEach(function (element) {
+      element.addEventListener('click', function (event) {
+        var id = event.target.getAttribute('id');
+        console.log('hello', event.target.getAttribute('id'));
+        _counter_js__WEBPACK_IMPORTED_MODULE_1__["default"].countLove(event, id);
+        _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].sendLoveData(id);
+        _api_js__WEBPACK_IMPORTED_MODULE_0__["default"].sendLoveData(id);
+      });
+    });
+  });
 });
 var eventhandler = new EventsHandler();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (eventhandler);
@@ -153,7 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Poppins', sans-serif;\r\n}\r\n\r\nbody {\r\n  background-color: rgb(245, 242, 242);\r\n}\r\n\r\n.homepage {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.display-items {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  padding: 1px;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 25%;\r\n  box-sizing: border-box;\r\n  border: 1px solid black;\r\n  padding: 10px;\r\n  padding-bottom: 30px;\r\n}\r\n\r\n.items img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.logo > img {\r\n  width: 100px;\r\n}\r\n\r\n.items .likes_love img {\r\n  width: 20px;\r\n}\r\n\r\n.likes_love {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-top: 10px;\r\n  padding-bottom: 10px;\r\n}\r\n\r\n.comment_reserve {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  gap: 8px;\r\n}\r\n\r\n.comment_reserve button {\r\n  padding: 6px;\r\n}\r\n\r\n.header {\r\n  display: flex;\r\n  align-items: center;\r\n  padding: 20px;\r\n  background-color: white;\r\n}\r\n\r\n.nav-bar {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  flex-grow: 1;\r\n}\r\n\r\n.nav-bar ul {\r\n  display: flex;\r\n  list-style: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.nav-bar li {\r\n  margin-left: 10px;\r\n}\r\n\r\n.nav-bar a {\r\n  text-decoration: none;\r\n  color: black;\r\n}\r\n\r\n.logo {\r\n  width: 40%;\r\n  cursor: pointer;\r\n}\r\n\r\nfooter {\r\n  display: flex;\r\n  justify-content: center;\r\n  padding-top: 35px;\r\n  padding-bottom: 35px;\r\n  margin-top: 20px;\r\n  background-color: white;\r\n  width: 100%;\r\n}\r\n\r\n@media screen and (max-width: 375px) {\r\n  .items {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 376px) {\r\n  .items {\r\n    width: calc(100% / 3);\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  .items {\r\n    width: 25%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1024px) {\r\n  .items {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1200px) {\r\n  .items {\r\n    width: calc(100% / 6);\r\n  }\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,kCAAkC;AACpC;;AAEA;EACE,oCAAoC;AACtC;;AAEA;EACE,aAAa;EACb,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,eAAe;EACf,YAAY;AACd;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,UAAU;EACV,sBAAsB;EACtB,uBAAuB;EACvB,aAAa;EACb,oBAAoB;AACtB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,iBAAiB;EACjB,oBAAoB;AACtB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,QAAQ;AACV;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,mBAAmB;EACnB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,gBAAgB;EAChB,UAAU;EACV,SAAS;AACX;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,qBAAqB;EACrB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;EACjB,oBAAoB;EACpB,gBAAgB;EAChB,uBAAuB;EACvB,WAAW;AACb;;AAEA;EACE;IACE,WAAW;EACb;AACF;;AAEA;EACE;IACE,qBAAqB;EACvB;AACF;;AAEA;EACE;IACE,UAAU;EACZ;AACF;;AAEA;EACE;IACE,UAAU;EACZ;AACF;;AAEA;EACE;IACE,qBAAqB;EACvB;AACF","sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Poppins', sans-serif;\r\n}\r\n\r\nbody {\r\n  background-color: rgb(245, 242, 242);\r\n}\r\n\r\n.homepage {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.display-items {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  padding: 1px;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 25%;\r\n  box-sizing: border-box;\r\n  border: 1px solid black;\r\n  padding: 10px;\r\n  padding-bottom: 30px;\r\n}\r\n\r\n.items img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.logo > img {\r\n  width: 100px;\r\n}\r\n\r\n.items .likes_love img {\r\n  width: 20px;\r\n}\r\n\r\n.likes_love {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-top: 10px;\r\n  padding-bottom: 10px;\r\n}\r\n\r\n.comment_reserve {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  gap: 8px;\r\n}\r\n\r\n.comment_reserve button {\r\n  padding: 6px;\r\n}\r\n\r\n.header {\r\n  display: flex;\r\n  align-items: center;\r\n  padding: 20px;\r\n  background-color: white;\r\n}\r\n\r\n.nav-bar {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  flex-grow: 1;\r\n}\r\n\r\n.nav-bar ul {\r\n  display: flex;\r\n  list-style: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.nav-bar li {\r\n  margin-left: 10px;\r\n}\r\n\r\n.nav-bar a {\r\n  text-decoration: none;\r\n  color: black;\r\n}\r\n\r\n.logo {\r\n  width: 40%;\r\n  cursor: pointer;\r\n}\r\n\r\nfooter {\r\n  display: flex;\r\n  justify-content: center;\r\n  padding-top: 35px;\r\n  padding-bottom: 35px;\r\n  margin-top: 20px;\r\n  background-color: white;\r\n  width: 100%;\r\n}\r\n\r\n@media screen and (max-width: 375px) {\r\n  .items {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 376px) {\r\n  .items {\r\n    width: calc(100% / 3);\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  .items {\r\n    width: 25%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1024px) {\r\n  .items {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1200px) {\r\n  .items {\r\n    width: calc(100% / 6);\r\n  }\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Poppins', sans-serif;\r\n}\r\n\r\nbody {\r\n  background-color: rgb(245, 242, 242);\r\n}\r\n\r\n.homepage {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.display-items {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  padding: 1px;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 25%;\r\n  box-sizing: border-box;\r\n  border: 1px solid black;\r\n  padding: 10px;\r\n  padding-bottom: 30px;\r\n}\r\n\r\n.items img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.logo > img {\r\n  width: 100px;\r\n}\r\n\r\n.items .likes_love img {\r\n  width: 20px;\r\n}\r\n\r\n.likes_love {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-top: 10px;\r\n  padding-bottom: 10px;\r\n}\r\n\r\n.comment_reserve {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  gap: 8px;\r\n}\r\n\r\n.comment_reserve button {\r\n  padding: 6px;\r\n}\r\n\r\n.header {\r\n  display: flex;\r\n  align-items: center;\r\n  padding: 20px;\r\n  background-color: white;\r\n}\r\n\r\n.nav-bar {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  flex-grow: 1;\r\n}\r\n\r\n.nav-bar ul {\r\n  display: flex;\r\n  list-style: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.nav-bar li {\r\n  margin-left: 10px;\r\n}\r\n\r\n.nav-bar a {\r\n  text-decoration: none;\r\n  color: black;\r\n}\r\n\r\n.logo {\r\n  width: 40%;\r\n  cursor: pointer;\r\n}\r\n\r\nfooter {\r\n  display: flex;\r\n  justify-content: center;\r\n  padding-top: 35px;\r\n  padding-bottom: 35px;\r\n  margin-top: 20px;\r\n  background-color: white;\r\n  width: 100%;\r\n}\r\n\r\n.love {\r\n  cursor: pointer;\r\n}\r\n\r\n@media screen and (max-width: 375px) {\r\n  .items {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 376px) {\r\n  .items {\r\n    width: calc(100% / 3);\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  .items {\r\n    width: 25%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1024px) {\r\n  .items {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1200px) {\r\n  .items {\r\n    width: calc(100% / 6);\r\n  }\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,sBAAsB;EACtB,kCAAkC;AACpC;;AAEA;EACE,oCAAoC;AACtC;;AAEA;EACE,aAAa;EACb,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,eAAe;EACf,YAAY;AACd;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,UAAU;EACV,sBAAsB;EACtB,uBAAuB;EACvB,aAAa;EACb,oBAAoB;AACtB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,iBAAiB;EACjB,oBAAoB;AACtB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,QAAQ;AACV;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,aAAa;EACb,uBAAuB;AACzB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,mBAAmB;EACnB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,gBAAgB;EAChB,UAAU;EACV,SAAS;AACX;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,qBAAqB;EACrB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;EACjB,oBAAoB;EACpB,gBAAgB;EAChB,uBAAuB;EACvB,WAAW;AACb;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE;IACE,WAAW;EACb;AACF;;AAEA;EACE;IACE,qBAAqB;EACvB;AACF;;AAEA;EACE;IACE,UAAU;EACZ;AACF;;AAEA;EACE;IACE,UAAU;EACZ;AACF;;AAEA;EACE;IACE,qBAAqB;EACvB;AACF","sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n  font-family: 'Poppins', sans-serif;\r\n}\r\n\r\nbody {\r\n  background-color: rgb(245, 242, 242);\r\n}\r\n\r\n.homepage {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.display-items {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  padding: 1px;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 25%;\r\n  box-sizing: border-box;\r\n  border: 1px solid black;\r\n  padding: 10px;\r\n  padding-bottom: 30px;\r\n}\r\n\r\n.items img {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.logo > img {\r\n  width: 100px;\r\n}\r\n\r\n.items .likes_love img {\r\n  width: 20px;\r\n}\r\n\r\n.likes_love {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-top: 10px;\r\n  padding-bottom: 10px;\r\n}\r\n\r\n.comment_reserve {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  gap: 8px;\r\n}\r\n\r\n.comment_reserve button {\r\n  padding: 6px;\r\n}\r\n\r\n.header {\r\n  display: flex;\r\n  align-items: center;\r\n  padding: 20px;\r\n  background-color: white;\r\n}\r\n\r\n.nav-bar {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  flex-grow: 1;\r\n}\r\n\r\n.nav-bar ul {\r\n  display: flex;\r\n  list-style: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.nav-bar li {\r\n  margin-left: 10px;\r\n}\r\n\r\n.nav-bar a {\r\n  text-decoration: none;\r\n  color: black;\r\n}\r\n\r\n.logo {\r\n  width: 40%;\r\n  cursor: pointer;\r\n}\r\n\r\nfooter {\r\n  display: flex;\r\n  justify-content: center;\r\n  padding-top: 35px;\r\n  padding-bottom: 35px;\r\n  margin-top: 20px;\r\n  background-color: white;\r\n  width: 100%;\r\n}\r\n\r\n.love {\r\n  cursor: pointer;\r\n}\r\n\r\n@media screen and (max-width: 375px) {\r\n  .items {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 376px) {\r\n  .items {\r\n    width: calc(100% / 3);\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) {\r\n  .items {\r\n    width: 25%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1024px) {\r\n  .items {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1200px) {\r\n  .items {\r\n    width: calc(100% / 6);\r\n  }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
