@@ -42,7 +42,6 @@ class SendAndReciveData {
       const likesData = await response.json();
       return likesData;
     } catch (error) {
-      console.log('the error is', error.message);
       return error;
     }
   };

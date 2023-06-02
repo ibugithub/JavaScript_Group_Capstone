@@ -1,5 +1,5 @@
 import tvShowApi from './api.js';
-import count from './counter.js';
+import counter from './counter.js';
 import '../style.css';
 import cancel from '../assets/cancel.png';
 import love from '../assets/love.png';
@@ -15,6 +15,7 @@ class EventsHandler {
 
   loadHome = (data, loveData) => {
     const mainElement = document.querySelector('.display-items');
+    const totals = document.querySelector('.total');
     data.forEach((element) => {
       if (element.show.image.original !== null) {
         const { id, name, image } = element.show;
@@ -41,16 +42,18 @@ class EventsHandler {
                     </div>
                   `;
         mainElement.insertAdjacentHTML('beforeend', container);
+        const total = counter.countItems();
+        totals.textContent = `${total}`;
       }
     });
-  }
+  };
 
   handleLikes = () => {
     const love = document.querySelectorAll('.love');
     love.forEach((element) => {
       element.addEventListener('click', (event) => {
         const id = event.target.getAttribute('id');
-        count.countLove(event, id);
+        counter.countLove(event, id);
         tvShowApi.sendLoveData(id);
       });
     });
@@ -131,43 +134,43 @@ class EventsHandler {
     this.handleSubmitClick();
   }
 
-    // To handle the clik in cancel button
-    handleCancleClick = () => {
-      const cancelImg = document.querySelector('#cancelImg');
-      const mainElement = document.querySelector('.homepage');
-      const popUp = document.querySelector('.popupContainer');
-      const itemContainer = document.querySelector('.display-items');
-      cancelImg.addEventListener('click', () => {
-        mainElement.removeChild(popUp);
-        itemContainer.classList.remove('blur');
-      });
-    }
+  // To handle the clik in cancel button
+  handleCancleClick = () => {
+    const cancelImg = document.querySelector('#cancelImg');
+    const mainElement = document.querySelector('.homepage');
+    const popUp = document.querySelector('.popupContainer');
+    const itemContainer = document.querySelector('.display-items');
+    cancelImg.addEventListener('click', () => {
+      mainElement.removeChild(popUp);
+      itemContainer.classList.remove('blur');
+    });
+  }
 
-    afterCommentPopup = async (id) => {
-      const commentsData = await tvShowApi.getCommentData(id);
-      const commentContainer = document.querySelector('.comments');
-      if (commentsData.length === undefined) {
-        const li = document.createElement('li');
-        li.textContent = "There's no comment yet";
-        commentContainer.appendChild(li);
-      } else {
-        commentsData.forEach((element) => {
-          const li = `
+  afterCommentPopup = async (id) => {
+    const commentsData = await tvShowApi.getCommentData(id);
+    const commentContainer = document.querySelector('.comments');
+    if (commentsData.length === undefined) {
+      const li = document.createElement('li');
+      li.textContent = "There's no comment yet";
+      commentContainer.appendChild(li);
+    } else {
+      commentsData.forEach((element) => {
+        const li = `
           <li>
           <span>${element.creation_date}</span> <span>${element.username}</span> <span>${element.comment}</span>
           </li>
           `;
-          commentContainer.insertAdjacentHTML('beforeend', li);
-        });
-      }
+        commentContainer.insertAdjacentHTML('beforeend', li);
+      });
     }
+  }
 
-    handleSubmitClick = () => {
-      const button = document.querySelector('#submit');
-      button.addEventListener('click', ((event) => {
-        event.preventDefault();
-      }));
-    }
+  handleSubmitClick = () => {
+    const button = document.querySelector('#submit');
+    button.addEventListener('click', ((event) => {
+      event.preventDefault();
+    }));
+  }
 }
 
 const eventhandler = new EventsHandler();
