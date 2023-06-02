@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: rgba(1, 0, 12, 0.816);
+  background-color: rgba(1, 0, 12, 0.95);
 }
 
 .homepage {
@@ -30,7 +30,7 @@ body {
   padding: 10px;
   border-radius: 6px;
   background-color: rgba(37, 67, 100, 0.1);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(35, 0, 0, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -47,7 +47,7 @@ body {
   height: 20rem;
 }
 
-.logo > img {
+.logo>img {
   width: 100px;
 }
 
@@ -82,6 +82,8 @@ body {
 .rsrv {
   color: white;
   font-weight: 400;
+  box-shadow: 1px 1px 2px 1px rgba(171, 0, 97, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .cmnt:hover,
@@ -97,6 +99,8 @@ body {
   align-items: center;
   padding: 20px;
   background-color: rgba(1, 2, 21, 0.689);
+  box-shadow: 0 0 32px 0 rgba(46, 0, 171, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .nav-bar {
@@ -151,7 +155,9 @@ body {
   font-size: 16px;
   font-weight: 700;
   padding: 2px;
-  background-color: rgba(215, 219, 250, 0.238);
+  opacity: 0.7;
+  background-color: rgba(215, 219, 250, 0.138);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 footer {
