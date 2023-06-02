@@ -30,8 +30,8 @@ class EventsHandler {
         }
         const container = `
                     <div class="items">
-                      <img src="${image.original}" alt="#" />
-                      <h2>${name}</h2>
+                      <img class="poster" src="${image.original}" alt="#" />
+                      <h2 class="title">${name}</h2>
                       <div class="likes_love">
                         <span id=${id}>Likes: <span class="innerSpan" >${count}</span> </span>
                         <button class="love"><img id=${id} src="${love}"></button>

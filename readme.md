@@ -1,7 +1,7 @@
 <div align="center">
   <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
   <img src="./src/assets/R.png" alt="logo" width="140"  height="auto" />
-  <h3>Anyverse</h3>
+  <h3>Aniverse</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
