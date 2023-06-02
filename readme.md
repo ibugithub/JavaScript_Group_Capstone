@@ -69,18 +69,16 @@
 - **Easy navigation**
 - **Real-Time Updates**
 
+**Check out the live demo here**
 ## 🚀 Live Demo <a name="live-demo"></a>
-
 [Demo Link 🔥](https://ibugithub.github.io/JavaScript_Group_Capstone/dist/)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-- **You can check out our video representation here below**
+**You can check out our video representation here below**
 
-## 🚀 video representation <a name="live-demo"></a>
-
-[Demo Link 🔥](https://ibugithub.github.io/JavaScript_Group_Capstone/dist/)
+## ✨ video representation <a name="live-demo"></a>
+[Video Link ](https://ibugithub.github.io/JavaScript_Group_Capstone/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
