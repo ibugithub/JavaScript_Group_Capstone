@@ -7,10 +7,9 @@ async function createApp() {
       },
     );
     const data = await response.text();
-    console.log('App created successfully. App ID:', data);
+    return data;
   } catch (error) {
-    console.error('Error creating app:', error);
+    return error;
   }
 }
-
 createApp();
