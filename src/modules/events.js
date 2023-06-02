@@ -66,21 +66,10 @@ class EventsHandler {
     });
   };
 
-  // To handle the clik in cancel button
-  handleCancleClick = () => {
-    const cancelImg = document.querySelector('#cancelImg');
-    const mainElement = document.querySelector('.homepage');
-    const popUp = document.querySelector('.popupContainer');
-    const itemContainer = document.querySelector('.display-items');
-    cancelImg.addEventListener('click', () => {
-      mainElement.removeChild(popUp);
-      itemContainer.classList.remove('blur');
-    });
-  }
-
   // This function will create a new container for comment popUp and asign it into the mainElement
   showPopup = (event) => {
     const item = event.target.closest('.items');
+    const id = event.target.getAttribute('data-id');
     const showImageSrc = item.querySelector('img').getAttribute('src');
     const name = item.querySelector('h2').textContent;
     const type = event.target.getAttribute('showType');
@@ -118,9 +107,6 @@ class EventsHandler {
                         <div class="count">()</div>
                     </div>
                     <ul class="comments">
-                        <li>This is first comment</li>
-                        <li>This is second comment</li>
-                        <li>This is the third comment</li>
                     </ul>
                 </div>
                 <div class="commentsAddingSection">
@@ -141,7 +127,47 @@ class EventsHandler {
     mainElement.insertAdjacentHTML('beforeend', commentPopup);
     itemContainer.classList.add('blur');
     this.handleCancleClick();
+    this.afterCommentPopup(id);
+    this.handleSubmitClick();
   }
+
+    // To handle the clik in cancel button
+    handleCancleClick = () => {
+      const cancelImg = document.querySelector('#cancelImg');
+      const mainElement = document.querySelector('.homepage');
+      const popUp = document.querySelector('.popupContainer');
+      const itemContainer = document.querySelector('.display-items');
+      cancelImg.addEventListener('click', () => {
+        mainElement.removeChild(popUp);
+        itemContainer.classList.remove('blur');
+      });
+    }
+
+    afterCommentPopup = async (id) => {
+      const commentsData = await tvShowApi.getCommentData(id);
+      const commentContainer = document.querySelector('.comments');
+      if (commentsData.length === undefined) {
+        const li = document.createElement('li');
+        li.textContent = "There's no comment yet";
+        commentContainer.appendChild(li);
+      } else {
+        commentsData.forEach((element) => {
+          const li = `
+          <li>
+          <span>${element.creation_date}</span> <span>${element.username}</span> <span>${element.comment}</span>
+          </li>
+          `;
+          commentContainer.insertAdjacentHTML('beforeend', li);
+        });
+      }
+    }
+
+    handleSubmitClick = () => {
+      const button = document.querySelector('#submit');
+      button.addEventListener('click', ((event) => {
+        event.preventDefault();
+      }));
+    }
 }
 
 const eventhandler = new EventsHandler();
