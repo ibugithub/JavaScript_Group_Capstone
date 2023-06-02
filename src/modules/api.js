@@ -1,10 +1,11 @@
 class SendAndReciveData {
   constructor() {
     this.url = 'https://api.tvmaze.com/schedule';
-    this.inovateUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+    this.involbeurl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+    this.appId = 'UFl3TzBZ7UUa77NKxu0f';
   }
 
-  gettingData = async () => {
+  getShowData = async () => {
     try {
       const response = await fetch(this.url);
       const jsonData = await response.json();
@@ -14,17 +15,26 @@ class SendAndReciveData {
     }
   };
 
-    // Function to fetch item likes from the Involvement API
-    fetchItemLikes = async (appId, itemId) => {
-      try {
-        const response = await fetch(`${this.inovateUrl}apps/${appId}/likes`);
-        const likesData = await response.json();
-        const itemLikes = likesData.find((item) => item.item_id === itemId);
-        return itemLikes ? itemLikes.likes : 0;
-      } catch (error) {
-        return 0;
-      }
-    };
+  getLoveData = async () => {
+    try {
+      const response = await fetch(`${this.involbeurl}apps/${this.appId}/likes`); // Use the correct URL format
+      const likesData = await response.json();
+      return likesData;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  sendLoveData = (id) => {
+    id = parseInt(id, 10);
+    fetch(`${this.involbeurl}apps/${this.appId}/likes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ item_id: id }),
+    });
+  };
 }
 
 const tvShowApi = new SendAndReciveData();
