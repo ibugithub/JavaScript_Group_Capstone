@@ -17,7 +17,7 @@ class SendAndReciveData {
 
   getLoveData = async () => {
     try {
-      const response = await fetch(`${this.involbeurl}apps/${this.appId}/likes`); // Use the correct URL format
+      const response = await fetch(`${this.involbeurl}apps/${this.appId}/likes`);
       const likesData = await response.json();
       return likesData;
     } catch (error) {

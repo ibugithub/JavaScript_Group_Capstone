@@ -110,6 +110,117 @@ footer {
   cursor: pointer;
 }
 
+.imgComment {
+  max-width: 600px;
+}
+
+#showImg {
+  width: 100%;
+}
+
+.cancelSection {
+  width: 230px;
+}
+
+#cancelImg {
+  width: 100%;
+}
+
+.imgContainer {
+  display: flex;
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.popupSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.title_count {
+  display: flex;
+  gap: 5px;
+  padding-bottom: 20px;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comments li {
+  list-style: none;
+}
+
+.detailBlock {
+  display: flex;
+  gap: 50px;
+}
+
+.detailBlock ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailBlock li {
+  list-style: none;
+}
+
+.commentsAddingSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#name,
+#comment,
+#submit {
+  border: none;
+  outline: none;
+  padding: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#submit:hover {
+  border: 1px solid goldenrod;
+}
+
+#dNone {
+  display: none;
+}
+
+.blur {
+  filter: blur(6px);
+}
+
+.popupContainer {
+  position: fixed;
+  overflow-y: scroll;
+  top: 20px;
+  bottom: 20px;
+  background-color: rgb(245, 242, 242);
+}
+
 @media screen and (max-width: 375px) {
   .items {
     width: 100%;

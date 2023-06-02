@@ -5,7 +5,6 @@ class Count {
         .textContent,
       10,
     );
-    console.log('the current count is', currentCount, typeof currentCount);
     const countContainer = event.target
       .closest('.likes_love')
       .querySelector('.innerSpan');
