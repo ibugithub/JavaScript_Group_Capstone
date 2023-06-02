@@ -118,16 +118,16 @@ footer {
   width: 100%;
 }
 
-.cancelSection{
+.cancelSection {
   width: 10%;
   padding-right: 10px;
   padding-top: 10px;
 }
 
 #cancelImg {
-    width: 30px;
-    position: fixed;
-    right: 4px;
+  width: 30px;
+  position: fixed;
+  right: 4px;
 }
 
 .imgContainer {
@@ -142,7 +142,7 @@ footer {
   gap: 30px;
 }
 
-.title_count { 
+.title_count {
   display: flex;
   gap: 5px;
   padding-bottom: 20px;
@@ -150,8 +150,8 @@ footer {
 }
 
 .title {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .comments {
@@ -191,7 +191,9 @@ justify-content: center;
   gap: 15px;
 }
 
-#name, #comment, #submit {
+#name,
+#comment,
+#submit {
   border: none;
   outline: none;
   padding: 20px;
@@ -247,7 +249,7 @@ justify-content: center;
     width: 50px;
     position: fixed;
     right: 10px;
-}
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -263,11 +265,11 @@ justify-content: center;
 }
 
 @media screen and (min-width: 540px) {
-#cancelImg {
-  width: 40px;
-  position: fixed;
-  right: 10px;
-}
+  #cancelImg {
+    width: 40px;
+    position: fixed;
+    right: 10px;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -276,4 +278,4 @@ justify-content: center;
     position: fixed;
     right: 10px;
   }
-  }
+}
