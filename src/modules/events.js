@@ -3,6 +3,7 @@ import loveCounter from './loveCounter.js';
 import '../style.css';
 import cancel from '../assets/cancel.png';
 import love from '../assets/love.png';
+import commentCounter from './commentCounter.js';
 
 class EventsHandler {
   onPageLoad = async () => {
@@ -101,7 +102,7 @@ class EventsHandler {
                 <div class="commentSection">
                     <div class="title_count">
                         <div class="title">Comments</div>
-                        <div class="count">()</div>
+                        <div class="count">(<span class="cmntCount"></span>)</div>
                     </div>
                     <ul class="comments">
                     </ul>
@@ -143,10 +144,12 @@ class EventsHandler {
   afterCommentPopup = async (id) => {
     const commentsData = await tvShowApi.getCommentData(id);
     const commentContainer = document.querySelector('.comments');
+    const comntCountSec = document.querySelector('.cmntCount');
     if (commentsData.length === undefined) {
       const li = document.createElement('li');
       li.textContent = "There's no comment yet";
       commentContainer.appendChild(li);
+      comntCountSec.textContent = 0;
     } else {
       commentsData.forEach((element) => {
         const li = `
@@ -156,10 +159,14 @@ class EventsHandler {
           `;
         commentContainer.insertAdjacentHTML('beforeend', li);
       });
+      const cmntCount = commentCounter.countComment(id);
+      cmntCount.then((result) => {
+        comntCountSec.textContent = result;
+      });
     }
   }
 
-  handleSubmitClick = async (id) => {
+  handleSubmitClick = (id) => {
     const button = document.querySelector('#submit');
     button.addEventListener('click', ((event) => {
       event.preventDefault();
@@ -168,16 +175,19 @@ class EventsHandler {
       const date = new Date();
       const commentDate = date.toISOString().slice(0, 10);
       const commentContainer = document.querySelector('.comments');
-      if (userName !== '' && userComment !== '') {
+      if (userName.replace(/\s/g, '') !== '' && userComment.replace(/\s/g, '') !== '') {
         const response = tvShowApi.sendCommentData(id, userName, userComment);
         response.then((result) => {
           if (result.status === 201) {
+            const comntCountSec = document.querySelector('.cmntCount');
             const li = `
               <li>
               <span>${commentDate}</span> <span>${userName}</span> <span>${userComment}</span>
               </li>
               `;
             commentContainer.insertAdjacentHTML('beforeend', li);
+            const prevcounter = parseInt(comntCountSec.textContent, 10);
+            comntCountSec.textContent = prevcounter + 1;
           }
         });
       }
