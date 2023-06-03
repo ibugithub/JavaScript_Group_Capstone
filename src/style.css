@@ -31,7 +31,7 @@ body {
   border-radius: 6px;
   background-color: rgba(37, 67, 100, 0.1);
   box-shadow: 0 8px 32px rgba(35, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
 
 .head-title {
@@ -88,7 +88,7 @@ body {
   color: white;
   font-weight: 400;
   box-shadow: 1px 1px 2px 1px rgba(171, 0, 97, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
 
 .cmnt:hover,
@@ -103,9 +103,9 @@ body {
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: rgba(1, 2, 21, 0.689);
-  box-shadow: 0 0 32px 0 rgba(46, 0, 171, 0.1);
-  backdrop-filter: blur(10px);
+  background-color: rgba(104, 103, 113, 0.129);
+  box-shadow: 0 0 32px 0 rgba(3, 12, 81, 0.1);
+  backdrop-filter: blur(6px);
 }
 
 .nav-bar {
@@ -143,19 +143,15 @@ body {
   cursor: pointer;
 }
 
-.bar {
-  display: flex;
-  justify-content: center;
+.total-show span:hover {
+  color: antiquewhite;
+  opacity: 0.9;
 }
 
 .total-items {
-  margin-right: 40px;
-  position: relative;
-  margin-left: 16px;
-  width: 100%;
   box-sizing: border-box;
-  border-radius: 4px;
-  color: antiquewhite;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
   font-size: 16px;
   font-weight: 700;
   padding: 2px;
@@ -284,6 +280,7 @@ footer {
 .popupContainer {
   position: fixed;
   overflow-y: scroll;
+  z-index: 10;
   top: 20px;
   bottom: 20px;
   left: 20%;
@@ -294,11 +291,6 @@ footer {
 
 .popupContainer::-webkit-scrollbar {
   display: none;
-}
-
-.totalLi {
-  display: flex;
-  align-items: center;
 }
 
 @media screen and (max-width: 375px) {
