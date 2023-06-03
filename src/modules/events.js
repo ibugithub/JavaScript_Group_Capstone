@@ -191,6 +191,8 @@ class EventsHandler {
             commentContainer.insertAdjacentHTML('beforeend', li);
             const prevcounter = parseInt(comntCountSec.textContent, 10);
             comntCountSec.textContent = prevcounter + 1;
+            document.querySelector('#name').value = '';
+            document.querySelector('#comment').value = '';
           }
         });
       }
