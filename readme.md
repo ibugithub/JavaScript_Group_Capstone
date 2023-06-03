@@ -78,7 +78,7 @@
 **You can check out our video representation here below**
 
 ## ✨ video representation <a name="live-demo"></a>
-[Video Link ](https://ibugithub.github.io/JavaScript_Group_Capstone/dist/)
+[Video Link ](https://drive.google.com/file/d/1X6MhAfQJJ-NXX08jV4dguLFVjy54RL_j/view)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
