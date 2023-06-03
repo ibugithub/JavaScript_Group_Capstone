@@ -18,17 +18,18 @@ class EventsHandler {
     const mainElement = document.querySelector('.display-items');
     const totals = document.querySelector('.total');
     data.forEach((element) => {
-      if (element.show.image.original !== null) {
-        const { id, name, image } = element.show;
-        let count = 0;
-        if (loveData.length > 0) {
-          loveData.forEach((element) => {
-            if (element.item_id === id) {
-              count = element.likes;
-            }
-          });
-        }
-        const container = `
+      if (element.show.image !== null) {
+        if (element.show.image.original !== null) {
+          const { id, name, image } = element.show;
+          let count = 0;
+          if (loveData.length > 0) {
+            loveData.forEach((element) => {
+              if (element.item_id === id) {
+                count = element.likes;
+              }
+            });
+          }
+          const container = `
                     <div class="items">
                       <img class="poster" src="${image.original}" alt="#" />
                       <h2 class="head-title">${name}</h2>
@@ -42,9 +43,10 @@ class EventsHandler {
                       </div>
                     </div>
                   `;
-        mainElement.insertAdjacentHTML('beforeend', container);
-        const total = loveCounter.countItems();
-        totals.textContent = `${total}`;
+          mainElement.insertAdjacentHTML('beforeend', container);
+          const total = loveCounter.countItems();
+          totals.textContent = `${total}`;
+        }
       }
     });
   };
